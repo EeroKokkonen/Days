@@ -9,7 +9,7 @@ class Program
         {
             DataHandler.GetEvents();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             System.Console.WriteLine("Could not find days.csv, creating a new one...");
         }
