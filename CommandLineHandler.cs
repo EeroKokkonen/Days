@@ -14,10 +14,6 @@ internal class Days : DaysCommandBase
         app.ShowHelp();
         return 1;
     }
-    public override List<string> CreateArgs()
-    {
-        return new List<string>(); 
-    }
 }
 [Command(Description = "List events according user choices")]
 internal class ListCommand : DaysCommandBase
@@ -84,36 +80,6 @@ internal class ListCommand : DaysCommandBase
         return base.OnExecute(app);
     }
 
-    public override List<string> CreateArgs()
-    {
-        var args = new List<string>();
-        args.Add("list");
-        if (Today)
-        {
-            args.Add("-t");
-        }
-        if (BeforeDate.hasValue)
-        {
-            args.Add("-b");
-            args.Add(BeforeDate.value);
-        }
-        if (AfterDate.hasValue)
-        {
-            args.Add("-a");
-            args.Add(AfterDate.value);
-        }
-        if (Date.hasValue)
-        {
-            args.Add("-d");
-            args.Add(Date.value);
-        }
-        if (NoCategory)
-        {
-            args.Add("-n");
-        }
-        return args;
-    }
-
 }
 
 [Command(Description = "Add event according user choices")]
@@ -128,31 +94,9 @@ internal class AddCommand : DaysCommandBase
 
     [Option("-e|--description", CommandOptionType.SingleValue)]
     public (bool hasValue, string value) Description { get; set; }
-    public override List<string> CreateArgs()
-    {
-        var args = new List<string>();
-        args.Add("add");
-        if (Date.hasValue)
-        {
-            args.Add("-d");
-            args.Add(Date.value);
-        }
-        if (Category.hasValue)
-        {
-            args.Add("-c");
-            args.Add(Category.value);
-        }
-        if (Description.hasValue)
-        {
-            args.Add("-e");
-            args.Add(Description.value);
-        }
 
-        return args;
-    }
     protected override int OnExecute(CommandLineApplication app)
     {
-        var args = CreateArgs();
         // Creates new event object
         EventRec eventRec = new();
 
@@ -203,13 +147,7 @@ internal class DeleteCommand : DaysCommandBase
 
     [Option("-a|--all", CommandOptionType.NoValue)]
     public bool All { get; set; }
-    public override List<string> CreateArgs()
-    {
-        var args = new List<string>();
-        args.Add("delete");
-        
-        return args;
-    }
+
     protected override int OnExecute(CommandLineApplication app)
     {
         List<EventRec> events = new();
@@ -262,7 +200,6 @@ internal class DeleteCommand : DaysCommandBase
 [HelpOption("--help")]
 abstract class DaysCommandBase
 {
-    public abstract List<string> CreateArgs();
     protected static void PrintEvents(List<EventRec> events)
     {
         System.Console.WriteLine(String.Format("{0, -15}{1, -15}{2, -15}", "Date", "Category", "Description"));
@@ -273,7 +210,6 @@ abstract class DaysCommandBase
     }
     protected virtual int OnExecute(CommandLineApplication app)
     {
-        var args = CreateArgs();
 
         return 0;
     }
