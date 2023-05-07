@@ -11,7 +11,6 @@ internal class DataHandler
     }
     public static void CreateCsvFile()
     {
-        using var parser = new ChoCSVWriter(path);
         List<EventRec> events = new();
         EventRec rec = new()
         {
@@ -20,6 +19,8 @@ internal class DataHandler
             Category = "Category"
         };
 
+        using var parser = new ChoCSVWriter(path);
+        
         parser.Write(rec);
     }
     public static void ExtractByDate(ref List<EventRec> events, DateTime date)
