@@ -42,14 +42,16 @@ internal class DataHandler
     }
     public static void ExtractByCategories(ref List<EventRec> events, string?[] categories, bool exclude = false)
     {
+        
         List <EventRec> events2 = new();
         if (exclude)
         {
             foreach (EventRec e in events)
             {
-                if (!categories.Contains(e.Category))
+                if (!categories.Contains(events[0].Category))
                     events2.Add(e);
             }
+            events = events2;
             return;
         }
 
