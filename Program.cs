@@ -12,6 +12,7 @@ class Program
         catch (Exception)
         {
             System.Console.WriteLine("Could not find days.csv, creating a new one...");
+            DataHandler.CreateCsvFile();
         }
         CommandLineApplication.Execute<Days>(args);
     }
