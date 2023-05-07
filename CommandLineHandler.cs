@@ -104,7 +104,7 @@ internal class AddCommand : DaysCommandBase
         if (Date.hasValue)
             eventRec.Date = Date.value;
         else
-            eventRec.Date = DateTime.Now.ToString();
+            eventRec.Date = DateTime.Now.Date.ToString("yyyy-MM-dd");
 
         if (Category.hasValue)
             eventRec.Category = Category.value;
@@ -210,7 +210,6 @@ abstract class DaysCommandBase
     }
     protected virtual int OnExecute(CommandLineApplication app)
     {
-
         return 0;
     }
 }
