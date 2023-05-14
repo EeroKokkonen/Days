@@ -29,7 +29,6 @@ internal class EventRec // Event object that will be saved to csv
     public static bool operator ==(EventRec firstEvent, EventRec secondEvent)
     {
         
-        // Equals handles case of null on right side.
         if(firstEvent.Category == secondEvent.Category
             && firstEvent.Date == secondEvent.Date
             && firstEvent.Description == secondEvent.Description)
@@ -43,7 +42,6 @@ internal class EventRec // Event object that will be saved to csv
     public static bool operator !=(EventRec firstEvent, EventRec secondEvent)
     {
 
-        // Equals handles case of null on right side.
         if (firstEvent.Category != secondEvent.Category
             || firstEvent.Date != secondEvent.Date
             || firstEvent.Description != secondEvent.Description)
@@ -64,6 +62,6 @@ internal class EventRec // Event object that will be saved to csv
 
     public override int GetHashCode()
     {
-        throw new NotImplementedException();
+        return 1;
     }
 }

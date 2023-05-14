@@ -7,13 +7,22 @@ class Program
     {
         try
         {
-            DataHandler.GetEvents();
+
+        
+            try
+            {
+                DataHandler.GetEvents();
+            }
+            catch (Exception)
+            {
+                System.Console.WriteLine("Could not find days.csv, creating a new one...");
+                DataHandler.CreateCsvFile();
+            }
+            CommandLineApplication.Execute<Days>(args);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            System.Console.WriteLine("Could not find days.csv, creating a new one...");
-            DataHandler.CreateCsvFile();
+            System.Console.WriteLine(ex.ToString());
         }
-        CommandLineApplication.Execute<Days>(args);
     }
 }

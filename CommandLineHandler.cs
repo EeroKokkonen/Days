@@ -150,8 +150,7 @@ internal class DeleteCommand : DaysCommandBase
 
     protected override int OnExecute(CommandLineApplication app)
     {
-        List<EventRec> events = new();
-        events = DataHandler.GetEvents();
+        List<EventRec> events = DataHandler.GetEvents();
 
         if (Date.hasValue)
             DataHandler.ExtractByDate(ref events, DateTime.Parse(Date.value));
