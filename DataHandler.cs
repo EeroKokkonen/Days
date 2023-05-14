@@ -164,10 +164,6 @@ internal class DataHandler
                         savedEvents.RemoveAt(j);
                 }
             }
-            foreach (var rec in savedEvents)
-            {
-                Console.WriteLine(rec);
-            }
             
             using var parser = new ChoCSVWriter(path).WithFirstLineHeader();
 
