@@ -188,6 +188,7 @@ internal class DeleteCommand : DaysCommandBase
             
         if (All)
         {
+            // Deletes all events, since it's adding empty list
             DataHandler.AddEvents(new List<EventRec>());
             return base.OnExecute(app);
         }

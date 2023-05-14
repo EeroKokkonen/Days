@@ -156,10 +156,19 @@ internal class DataHandler
         try
         {
             List<EventRec> savedEvents = GetEvents();
-            foreach(var rec in events)
+            for(int i = 0; i < events.Count; i++)
             {
-                savedEvents.Remove(rec);
+                for(int j = 0; j < savedEvents.Count; j++)
+                {
+                    if (savedEvents[j] == events[i])
+                        savedEvents.RemoveAt(j);
+                }
             }
+            foreach (var rec in savedEvents)
+            {
+                Console.WriteLine(rec);
+            }
+            
             using var parser = new ChoCSVWriter(path).WithFirstLineHeader();
 
             parser.Write(savedEvents);

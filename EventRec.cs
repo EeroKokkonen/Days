@@ -25,4 +25,45 @@ internal class EventRec // Event object that will be saved to csv
     {
         return String.Format("{0, -15}{1, -15}{2, -15}",Date, Category, Description);
     }
+
+    public static bool operator ==(EventRec firstEvent, EventRec secondEvent)
+    {
+        
+        // Equals handles case of null on right side.
+        if(firstEvent.Category == secondEvent.Category
+            && firstEvent.Date == secondEvent.Date
+            && firstEvent.Description == secondEvent.Description)
+        {
+            return true;
+        }
+
+        return false;
+        
+    }
+    public static bool operator !=(EventRec firstEvent, EventRec secondEvent)
+    {
+
+        // Equals handles case of null on right side.
+        if (firstEvent.Category != secondEvent.Category
+            || firstEvent.Date != secondEvent.Date
+            || firstEvent.Description != secondEvent.Description)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public override bool Equals(Object? obj)
+    {
+        if (obj == null)
+            return false;
+
+        return this == (EventRec)obj;
+    }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }
